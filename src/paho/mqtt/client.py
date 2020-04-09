@@ -3229,8 +3229,8 @@ class Client(object):
             return MQTT_ERR_SUCCESS
         elif message.qos == 1:
             self._handle_on_message(message)
-            rc = self._send_puback(message.mid)
-            return rc
+            # No PUBACK here !!! Make sure to send it manually!
+            return MQTT_ERR_SUCCESS
         elif message.qos == 2:
             rc = self._send_pubrec(message.mid)
             message.state = mqtt_ms_wait_for_pubrel
